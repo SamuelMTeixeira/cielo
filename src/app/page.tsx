@@ -1,7 +1,24 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './page.module.css'
+import useTransactions from '@/hooks/useTransactions'
 
 export default function Home() {
+  const { transactions, summary, pagination } = useTransactions()
+
+  if (transactions) {
+    console.log(transactions)
+  }
+
+  if (summary) {
+    console.log(summary)
+  }
+
+  if (pagination) {
+    console.log(pagination)
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
