@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bootcamp Cielo | Ada.tech
 
-## Getting Started
+##### ⚠️ In progress 
 
-First, run the development server:
+## Descrição do Projeto
+
+O Bootcampo Cielo | Ada.tech é um projeto desenvolvido com Next.js, React e TypeScript para [descrever o objetivo do projeto]. O projeto utiliza o gerenciador de pacotes pnpm, mas você também pode optar por npm, yarn ou bun para instalar as dependências.
+
+## 🚀 Instruções de Instalação
+
+Siga as etapas abaixo para configurar e executar o projeto em sua máquina local.
+
+1. Clone este repositório:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    git clone https://github.com/SamuelMTeixeira/cielo.git
+    cd cielo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Escolha um dos seguintes comandos de acordo com o gerenciador de pacotes que você prefere:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+    pnpm install
+    # or
+    npm install
+    # or
+    yarn install
+```
 
-## Learn More
+3. Após concluir as etapas de instalação, você pode iniciar o servidor de desenvolvimento usando o seguinte comando:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+    pnpm dev
+    # or
+    npm run dev
+    # or
+    yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Isso iniciará o servidor de desenvolvimento e você poderá acessar o projeto em http://localhost:3000 em seu navegador.
