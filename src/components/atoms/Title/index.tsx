@@ -1,3 +1,5 @@
+'use client'
+
 import title from './title.variants'
 import { VariantProps } from 'tailwind-variants'
 import { Heading, HeadingLevel } from '@ariakit/react'

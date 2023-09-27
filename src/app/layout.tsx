@@ -24,11 +24,11 @@ const nunito = Nunito({
   variable: '--font-nunito',
 })
 
-export default function RootLayout({
-  children,
-}: {
+export interface LayoutProps {
   children: React.ReactNode
-}) {
+}
+
+export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body
