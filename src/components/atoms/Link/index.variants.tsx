@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants'
 
-export const link = tv({
-  base: 'font-bold',
+export const linkVariants = tv({
+  base: 'font-bold font-raleway rounded-lg px-4 py-1 hover:bg-gray-200',
   variants: {
     size: {
       xs: 'text-xs',
@@ -17,8 +17,9 @@ export const link = tv({
       '7xl': 'text-7xl',
     },
     weight: {
+      normal: 'font-normal',
       bold: 'font-bold',
-      extrabold: 'font-bold',
+      extrabold: 'font-extrabold',
     },
   },
   defaultVariants: {
@@ -27,4 +28,4 @@ export const link = tv({
   },
 })
 
-export default link
+export default linkVariants

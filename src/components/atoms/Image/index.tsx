@@ -4,6 +4,20 @@ export type ImageProps = NextImageProps & {
   alt: string
 }
 
-export default function Image({ src, alt, width, height, className }: ImageProps) {
-  return <BaseImage src={src} width={width} height={height} alt={alt} className={className} />
+export default function Image({
+  src,
+  alt,
+  width,
+  height,
+  className,
+}: ImageProps) {
+  return (
+    <BaseImage
+      src={src}
+      width={width}
+      height={height}
+      alt={alt}
+      className={className}
+    />
+  )
 }

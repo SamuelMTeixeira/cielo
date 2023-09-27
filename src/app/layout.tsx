@@ -31,7 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${raleway.className} ${nunito.className} min-h-full bg-gray-100`}>
+      <body
+        className={`${raleway.className} ${nunito.className} min-h-full bg-gray-100`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
