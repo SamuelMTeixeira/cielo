@@ -1,3 +1,5 @@
+'use client'
+
 import { NavItem } from '@/components/molecules/Nav'
 import { ArrowLeftRight, Home } from 'lucide-react'
 
@@ -9,14 +11,9 @@ export const navigationItems: NavItem[] = [
   },
   {
     url: '/historico',
-    name: 'Transações',
+    name: 'Histórico de transações',
     Icon: ArrowLeftRight,
-  },
-  {
-    url: '/historico',
-    name: 'Transações via PIX',
-    Icon: ArrowLeftRight,
-  },
+  }
 ]
 
 export default navigationItems
