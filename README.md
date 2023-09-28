@@ -1,20 +1,22 @@
-# Bootcamp Cielo | Ada.tech
 
-##### ⚠️ In progress 
+<p align="center">
+<img src="src/assets/img/logo.svg" width="200" alt="Plataforma Integral de Registros Cirúrgicos">
+</p>
+<h1 align="center">Cielo Metrics</h1>
 
 ## Descrição do Projeto
 
-O Bootcampo Cielo | Ada.tech é um projeto desenvolvido com Next.js, React e TypeScript para [descrever o objetivo do projeto]. O projeto utiliza o gerenciador de pacotes pnpm, mas você também pode optar por npm, yarn ou bun para instalar as dependências.
+O Cielo Metrics é um projeto resultante do Bootcamp Cielo da Ada Tech, construído com as tecnologias TypeScript, React e Next.js. Este projeto tem como objetivo principal criar uma aplicação que ofereça análises de alto valor para os clientes finais.
 
-## 🚀 Instruções de Instalação
+## Instruções de Instalação
 
 Siga as etapas abaixo para configurar e executar o projeto em sua máquina local.
 
 1. Clone este repositório:
 
 ```bash
-    git clone https://github.com/SamuelMTeixeira/cielo.git
-    cd cielo
+    git clone https://github.com/SamuelMTeixeira/cielo.git cielo-metrics
+    cd cielo-metrics
 ```
 
 2. Instale as dependências:
