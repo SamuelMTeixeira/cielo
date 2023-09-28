@@ -17,7 +17,9 @@ export const linkVariants = tv({
       '7xl': 'text-7xl',
     },
     weight: {
+      light: 'font-light',
       normal: 'font-normal',
+      medium: 'font-medium',
       bold: 'font-bold',
       extrabold: 'font-extrabold',
     },

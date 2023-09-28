@@ -39,6 +39,12 @@ export const flex = tv({
       9: 'gap-9',
       10: 'gap-10',
     },
+    flex: {
+      '1': 'flex-1',
+      auto: 'flex-auto',
+      initial: 'flex-initial',
+      none: 'flex-none',
+    },
   },
 })
 

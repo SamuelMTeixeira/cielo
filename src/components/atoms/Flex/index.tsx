@@ -1,8 +1,10 @@
 import { VariantProps } from 'tailwind-variants'
-import flex from './flex.variants'
+import flexVariants from './flex.variants'
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-export type FlexProps<T extends ElementType> = VariantProps<typeof flex> & {
+export type FlexProps<T extends ElementType> = VariantProps<
+  typeof flexVariants
+> & {
   as?: T
 }
 
@@ -14,13 +16,14 @@ export default function Flex<T extends ElementType>({
   items,
   justify,
   gap,
+  flex,
   ...props
 }: FlexProps<T> & ComponentPropsWithoutRef<T>) {
   const Component = as || 'div'
 
   return (
     <Component
-      className={`${flex({ direction, items, justify, gap })} ${
+      className={`${flexVariants({ direction, items, justify, gap, flex })} ${
         className || ''
       }`}
       {...props}

@@ -1,5 +1,5 @@
 import { LayoutProps } from '@/app/layout'
-import { Box, Flex } from '@/components/atoms'
+import { Flex } from '@/components/atoms'
 import { NavItem } from '@/components/molecules/Nav'
 import { Aside } from '@/components/organisms'
 
@@ -15,7 +15,9 @@ export default function MainTemplate({
     <Flex as={'div'} gap={5} className="p-5">
       <Aside navigationItems={navigationItems} />
 
-      <Box as={'main'}>{children}</Box>
+      <Flex as={'div'} direction="column" className="flex-1">
+        {children}
+      </Flex>
     </Flex>
   )
 }

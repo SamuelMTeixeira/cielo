@@ -21,10 +21,11 @@ export function NavItem({ name, Icon, url, isActive }: NavItem) {
         href={url}
         size="md"
         weight="normal"
-        className={`flex items-center gap-2 ${isActive
+        className={`flex items-center gap-2 ${
+          isActive
             ? 'text-blue-500 fill-blue-500 font-bold'
             : 'text-gray-500 fill-gray-600 font-normal'
-          }`}
+        }`}
       >
         <Icon size={20} />
         {name}

@@ -8,11 +8,13 @@ export type ButtonProps = VariantProps<typeof buttonVariants> &
 export default function Button({
   children,
   className,
-  color,
+  schema,
   size,
 }: ButtonProps) {
   return (
-    <button className={`${buttonVariants({ color, size })} ${className || ''}`}>
+    <button
+      className={`${buttonVariants({ schema, size })} ${className || ''}`}
+    >
       {children}
     </button>
   )
