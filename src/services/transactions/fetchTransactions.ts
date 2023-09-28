@@ -48,6 +48,6 @@ interface TransactionsResponse {
 }
 
 export default async function fetchTransactions(): Promise<TransactionsResponse> {
-  const response = await axiosInstance.get('/transactions')
+  const response = await axiosInstance.get('/api/transactions')
   return response.data
 }
