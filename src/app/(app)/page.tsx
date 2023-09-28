@@ -7,6 +7,10 @@ import { Card } from '@/components/molecules'
 import { Box, Flex, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
+import { useState, useEffect } from 'react'
+import sumNetAmount from '@/utils/sumNetAmount'
+import parse from '@/utils/parse'
+import generateArrayNumber from '@/utils/generateArrayNumber'
 
 const columns: ColumnsProps[] = [
   {
@@ -15,82 +19,143 @@ const columns: ColumnsProps[] = [
     headerClassName: 'table--header',
   },
   {
-    field: 'campo1',
-    headerName: 'campo 1',
+    field: 'date',
+    headerName: 'Data',
+    headerClassName: 'table--header',
+    width: 100,
+  },
+  {
+    field: 'paymentType',
+    headerName: 'Tipo de pagamento',
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
   },
   {
-    field: 'campo2',
-    headerName: 'campo 2',
+    field: 'cardBrand',
+    headerName: 'Bandeira',
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
   },
   {
-    field: 'campo3',
-    headerName: 'campo 3 ',
+    field: 'netAmount',
+    headerName: 'Valor líquido',
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
   },
-]
+  {
+    field: 'channel',
+    headerName: 'Canal',
+    headerClassName: 'table--header',
+    flex: 1,
+    minWidth: 120,
+  },
+  {
+    field: 'status',
+    headerName: 'Status',
+    headerClassName: 'table--header',
+    flex: 1,
+    minWidth: 120,
+    renderCell: (params) => {
+      const status = String(params.formattedValue).toLowerCase()
+      let colorSchema = ''
 
-const rows: RowsProps = [
-  {
-    id: 1,
-    campo1: '438109',
-    campo2: 'Mastercard',
-    campo3: '13/07/1990',
-  },
-  {
-    id: 2,
-    campo1: '4381e09',
-    campo2: 'Elo',
-    campo3: '13/07/1990',
-  },
-  {
-    id: 3,
-    campo1: '43d8109d',
-    campo2: 'Mastercard',
-    campo3: '13/07/1990',
+      switch (status) {
+        case 'aprovada':
+          colorSchema = 'bg-green-500'
+          break
+        case 'negada':
+          colorSchema = 'bg-red-500'
+          break
+        case 'pendente':
+          colorSchema = 'bg-yellow-500'
+          break
+        default:
+          colorSchema = 'bg-gray-500'
+          break
+      }
+
+      return (
+        <Box
+          as={'span'}
+          className={`${colorSchema} font-bold text-white rounded-full py-1 px-4`}
+        >
+          {params.formattedValue}
+        </Box>
+      )
+    },
   },
 ]
 
 export default function Home() {
   const { transactions, summary, pagination } = useTransactions()
+  const [approvedBalanceHistory, setApprovedBalanceHistory] = useState<
+    number[]
+  >([])
+  const [deniedBalanceHistory, setDeniedBalanceHistory] = useState<number[]>([])
+  const [pendingBalanceHistory, setPendingBalanceHistory] = useState<number[]>(
+    [],
+  )
 
-  if (transactions) {
-    console.log(transactions)
+  useEffect(() => {
+    if (transactions) {
+      setApprovedBalanceHistory(sumNetAmount('aprovada', transactions))
+      setDeniedBalanceHistory(sumNetAmount('negada', transactions))
+      setPendingBalanceHistory(sumNetAmount('pendente', transactions))
+    }
+  }, [transactions])
+
+  if (!transactions && !summary && !pagination) {
+    return <p>Carregando...</p>
   }
 
-  if (summary) {
-    console.log(summary)
-  }
+  const totalNetAmount: string = parse.toMoney(summary?.totalNetAmount ?? 0)
+  const totalAverageAmount: string = parse.toMoney(
+    summary?.totalAverageAmount ?? 0,
+  )
 
-  if (pagination) {
-    console.log(pagination)
-  }
+  const categories = generateArrayNumber(pagination?.pageSize ?? 0)
+
+  const rows: RowsProps =
+    transactions
+      ?.filter((transaction, index) => index < 8)
+      .map((transaction) => ({
+        id: transaction.id,
+        date: parse.toDateBR(transaction.date),
+        paymentType: transaction.paymentType,
+        cardBrand: transaction.cardBrand,
+        netAmount: parse.toMoney(transaction.netAmount),
+        channel: transaction.channel,
+        status: transaction.status,
+      })) ?? []
 
   return (
     <PageTemplate title="Página inicial" rightElement={<p>elemento direito</p>}>
       <Flex as={'section'} className="mt-10" gap={5} justify="between">
-        <Card title="Evolução das transações">
+        <Card
+          title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
+        >
           <LineChart
             values={[
               {
-                name: 'Esse mês',
-                data: [30, 40, 45],
+                name: 'Saldo líquido aprovado (R$)',
+                data: approvedBalanceHistory,
                 color: '#017ceb',
               },
               {
-                name: 'Mês passado',
-                data: [50, 60, 95],
-                color: '#5a646e',
+                name: 'Saldo líquido pendente (R$)',
+                data: pendingBalanceHistory,
+                color: '#eab308',
+              },
+              {
+                name: 'Saldo líquido negado (R$)',
+                data: deniedBalanceHistory,
+                color: '#ef4444',
               },
             ]}
-            categories={[2020, 2021, 2022, 2023]}
+            categories={categories}
           />
         </Card>
 
@@ -107,20 +172,20 @@ export default function Home() {
         >
           <Flex as={'div'} justify="evenly" items="center">
             <Box as={'div'}>
-              <Text className="text-center">Saldo do periodo</Text>
+              <Text className="text-center">Saldo</Text>
               <Title
                 className="text-center text-green-600"
                 size="3xl"
                 level={5}
               >
-                R$200,00
+                {`${totalNetAmount}`}
               </Title>
             </Box>
 
             <Box as={'div'}>
-              <Text className="text-center">Total de transações</Text>
+              <Text className="text-center">Valor médio por transação</Text>
               <Title className="text-center" size="3xl" level={5}>
-                03
+                {`${totalAverageAmount}`}
               </Title>
             </Box>
           </Flex>
@@ -129,7 +194,7 @@ export default function Home() {
 
       <Card
         className="mt-5"
-        title="Histórico de registros"
+        title="Transações recentes"
         rightElement={
           <Link
             className="bg-gray-100 py-2 px-4"
@@ -141,7 +206,12 @@ export default function Home() {
           </Link>
         }
       >
-        <Table columns={columns} rows={rows} />
+        <Table
+          pageSizeOptions={[8]}
+          pageSize={8}
+          columns={columns}
+          rows={rows}
+        />
       </Card>
     </PageTemplate>
   )
