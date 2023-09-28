@@ -6,15 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:open": "cypress open"
   },
   "dependencies": {
     "@ariakit/react": "^0.3.3",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.11",
+    "@mui/x-data-grid": "^6.15.0",
     "@tanstack/react-query": "^4.35.3",
     "axios": "^1.5.0",
     "lucide-react": "^0.279.0",
     "next": "latest",
     "react": "latest",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "latest",
     "tailwind-variants": "^0.1.14"
   },
@@ -24,6 +30,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "^10.4.16",
+    "cypress": "^13.3.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "eslint-plugin-jsx-a11y": "^6.7.1",
