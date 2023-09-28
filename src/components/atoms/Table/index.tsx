@@ -4,13 +4,23 @@ import {
   DataGrid,
   GridRowsProp as RowsProps,
   GridColDef as ColumnsProps,
-  DataGridProps as TableProps,
+  DataGridProps,
   ptBR,
 } from '@mui/x-data-grid'
 
+type TableProps = DataGridProps & {
+  pageSize?: number
+}
+
 export type { RowsProps, ColumnsProps, TableProps }
 
-export default function Table({ columns, rows, apiRef }: TableProps) {
+export default function Table({
+  columns,
+  rows,
+  apiRef,
+  pageSizeOptions,
+  pageSize,
+}: TableProps) {
   return (
     <DataGrid
       rows={rows}
@@ -25,12 +35,12 @@ export default function Table({ columns, rows, apiRef }: TableProps) {
       initialState={{
         pagination: {
           paginationModel: {
-            pageSize: 25,
+            pageSize: pageSize ?? 25,
           },
         },
       }}
       loading={rows.length === 0}
-      pageSizeOptions={[25, 50, 100]}
+      pageSizeOptions={pageSizeOptions ?? [25, 50, 100]}
       disableRowSelectionOnClick
       columnVisibilityModel={{ id: false }}
       localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
