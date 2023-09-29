@@ -2,7 +2,7 @@
 
 import useTransactions from '@/hooks/useTransactions'
 import Table, { ColumnsProps, RowsProps } from '@/components/atoms/Table'
-import { Card } from '@/components/molecules'
+import { Card, Section } from '@/components/molecules'
 import PageTemplate from '@/components/templates/PageTemplate'
 import { Box, Select } from '@/components/atoms'
 import parse from '@/utils/parse'
@@ -117,14 +117,20 @@ export default function Home() {
         />
       }
     >
-      <Card className="mt-5" title="Todos os registros de transações">
-        <Table
-          pageSizeOptions={[25, 50, 100]}
-          pageSize={25}
-          columns={columns}
-          rows={rows}
-        />
-      </Card>
+
+      <Section id="tabela" className='flex justify-center items-center'>
+        <Card
+          className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
+          title="Transações recentes"
+        >
+          <Table
+            pageSizeOptions={[8]}
+            pageSize={8}
+            columns={columns}
+            rows={rows}
+          />
+        </Card>
+      </Section>
     </PageTemplate>
   )
 }

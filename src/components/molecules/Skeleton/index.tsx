@@ -8,8 +8,7 @@ const Chart = () => {
     <Flex
       items="center"
       justify="center"
-      style={{ width: 500, height: 250 }}
-      className="bg-gray-100 rounded-md animate-pulse"
+      className="bg-gray-100 rounded-md animate-pulse w-full h-full "
     >
       <Flex direction="column" items="center" justify="center">
         <LineChart className="w-14 h-14 text-gray-400 " />

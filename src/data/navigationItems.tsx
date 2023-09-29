@@ -11,7 +11,7 @@ export const navigationItems: NavItem[] = [
   },
   {
     url: '/historico',
-    name: 'Histórico de transações',
+    name: 'Transações',
     Icon: ArrowLeftRight,
   },
 ]

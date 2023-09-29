@@ -3,14 +3,15 @@
 import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
-import { Card, Skeleton } from '@/components/molecules'
-import { Box, Flex, Select, Table, Text, Title } from '@/components/atoms'
+import { Card, Section, Skeleton } from '@/components/molecules'
+import { Box, Flex, Lottie, Select, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
 import { useState, useEffect } from 'react'
 import sumNetAmount from '@/utils/sumNetAmount'
 import parse from '@/utils/parse'
 import generateArrayNumber from '@/utils/generateArrayNumber'
+import searchAnimation from '@/assets/lottie/searchAnimation.json'
 
 const columns: ColumnsProps[] = [
   {
@@ -22,7 +23,8 @@ const columns: ColumnsProps[] = [
     field: 'date',
     headerName: 'Data',
     headerClassName: 'table--header',
-    width: 100,
+    flex: 1,
+    maxWidth: 100,
   },
   {
     field: 'paymentType',
@@ -112,7 +114,14 @@ export default function Home() {
   }, [transactions])
 
   if (!transactions && !summary && !pagination) {
-    return <p>Carregando...</p>
+    return (
+      <Flex items="center" justify="center" className="h-screen w-full">
+        <Box items="center" justify="center" className="flex-1">
+          <Lottie animationData={searchAnimation} width={'80%'} />
+          <Text className="text-gray-500 animate-pulse text-center" size='xl'>Os gráficos estão sendo gerados, por favor aguarde...</Text>
+        </Box>
+      </Flex>
+    )
   }
 
   const totalNetAmount: string = parse.toMoney(summary?.totalNetAmount ?? 0)
@@ -156,32 +165,31 @@ export default function Home() {
   return (
     <PageTemplate
       title="Página inicial"
+      className='flex-1'
       rightElement={
         <Select
           options={['27/09/2023 a 27/10/2023']}
           defaultValue={'27/09/2023 a 27/10/2023'}
           label="Paginação"
         />
-      }
-    >
-      <Flex as={'section'} className="mt-10" gap={5} justify="between">
+      }>
+
+      <Section id='graficos' className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Card
           title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
         >
-          <LineChart
-            values={values}
-            categories={categories}
-            width={500}
-            height={250}
-            loadingComponent={<Skeleton.Chart />}
-          />
+          <Box as={'div'} className="h-72">
+            <LineChart
+              values={values}
+              categories={categories}
+              loadingComponent={<Skeleton.Chart />}
+            />
+          </Box>
         </Card>
 
-        <Card
-          className="flex flex-1 flex-col justify-between"
-          title="Resumo geral"
-        >
-          <Flex as={'div'} justify="evenly" items="center">
+
+        <Card title="Resumo geral">
+          <Flex as={'div'} direction='column' justify='center' items='center' className='h-full' gap={5}>
             <Box as={'div'}>
               <Text className="text-center">Saldo</Text>
               <Title
@@ -201,29 +209,32 @@ export default function Home() {
             </Box>
           </Flex>
         </Card>
-      </Flex>
+      </Section>
 
-      <Card
-        className="mt-5"
-        title="Transações recentes"
-        rightElement={
-          <Link
-            className="bg-gray-100 py-2 px-4"
-            size="md"
-            weight="medium"
-            href={'/historico'}
-          >
-            Ver mais
-          </Link>
-        }
-      >
-        <Table
-          pageSizeOptions={[8]}
-          pageSize={8}
-          columns={columns}
-          rows={rows}
-        />
-      </Card>
+
+      <Section id="tabela" className='flex justify-center items-center '>
+        <Card
+          className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
+          title="Transações recentes"
+          rightElement={
+            <Link
+              className="bg-gray-100 py-2 px-4"
+              size="md"
+              weight="medium"
+              href={'/historico'}
+            >
+              Ver mais
+            </Link>
+          }
+        >
+          <Table
+            pageSizeOptions={[8]}
+            pageSize={8}
+            columns={columns}
+            rows={rows}
+          />
+        </Card>
+      </Section>
     </PageTemplate>
   )
 }

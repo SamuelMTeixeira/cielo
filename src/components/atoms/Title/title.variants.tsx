@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants'
 
 export const title = tv({
-  base: 'font-bold font-nunito',
+  base: 'font-bold',
   variants: {
     size: {
       xs: 'text-xs',
@@ -20,10 +20,14 @@ export const title = tv({
       bold: 'font-bold',
       extrabold: 'font-bold',
     },
+    font: {
+      nunito: 'font-nunito',
+    },
   },
   defaultVariants: {
     size: 'lg',
     weight: 'bold',
+    font: 'nunito',
   },
 })
 

@@ -10,10 +10,17 @@ export default function Button({
   className,
   schema,
   size,
+  rounded,
+  onClick,
+  ...props
 }: ButtonProps) {
   return (
     <button
-      className={`${buttonVariants({ schema, size })} ${className || ''}`}
+      className={`${buttonVariants({ schema, size, rounded })} ${
+        className || ''
+      }`}
+      onClick={onClick}
+      {...props}
     >
       {children}
     </button>

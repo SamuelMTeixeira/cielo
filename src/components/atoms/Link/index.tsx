@@ -13,11 +13,14 @@ export default function Link({
   className,
   size,
   weight,
+  schema,
+  onClick,
 }: LinkProps) {
   return (
     <NextLink
       href={href}
-      className={`${linkVariants({ size, weight })} ${className}`}
+      className={`${linkVariants({ size, weight, schema })} ${className}`}
+      onClick={onClick}
     >
       {children}
     </NextLink>

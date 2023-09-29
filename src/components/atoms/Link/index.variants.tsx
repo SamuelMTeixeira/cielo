@@ -1,8 +1,12 @@
 import { tv } from 'tailwind-variants'
 
 export const linkVariants = tv({
-  base: 'font-bold font-raleway rounded-lg px-4 py-1 hover:bg-gray-200',
+  base: 'font-bold font-raleway rounded-lg px-4 py-1',
   variants: {
+    schema: {
+      default: 'hover:bg-gray-200',
+      transparent: 'hover:bg-transparent',
+    },
     size: {
       xs: 'text-xs',
       sm: 'text-sm',
@@ -25,6 +29,7 @@ export const linkVariants = tv({
     },
   },
   defaultVariants: {
+    schema: 'default',
     size: 'lg',
     weight: 'bold',
   },
