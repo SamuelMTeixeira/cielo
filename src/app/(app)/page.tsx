@@ -22,18 +22,22 @@ const columns: ColumnsProps[] = [
     field: 'date',
     headerName: 'Data',
     headerClassName: 'table--header',
+    flex: 1,
+    maxWidth: 100,
   },
   {
     field: 'paymentType',
     headerName: 'Tipo de pagamento',
     headerClassName: 'table--header',
     flex: 1,
+    minWidth: 120,
   },
   {
     field: 'cardBrand',
     headerName: 'Bandeira',
     headerClassName: 'table--header',
     flex: 1,
+    minWidth: 120,
     description:
       'Marca ou empresa responsável por um determinado cartão de crédito',
   },
@@ -42,21 +46,23 @@ const columns: ColumnsProps[] = [
     headerName: 'Valor líquido',
     headerClassName: 'table--header',
     flex: 1,
+    minWidth: 120,
   },
   {
     field: 'channel',
     headerName: 'Canal',
     headerClassName: 'table--header',
     flex: 1,
+    minWidth: 120,
     description:
       'É a forma pela qual uma transação foi realizada ou processada',
-      resizable: true
   },
   {
     field: 'status',
     headerName: 'Status',
     headerClassName: 'table--header',
     flex: 1,
+    minWidth: 120,
     renderCell: (params) => {
       const status = String(params.formattedValue).toLowerCase()
       let colorSchema = ''
@@ -175,7 +181,7 @@ export default function Home() {
 
 
         <Card title="Resumo geral">
-          <Flex as={'div'} direction='column' gap={4}>
+          <Flex as={'div'} direction='column' justify='center' items='center' className='h-full' gap={5}>
             <Box as={'div'}>
               <Text className="text-center">Saldo</Text>
               <Title
@@ -198,9 +204,9 @@ export default function Home() {
       </Section>
 
 
-      <Section id="tabela">
+      <Section id="tabela" className='flex justify-center items-center '>
         <Card
-          className="mt-5 max-w-full"
+          className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
           title="Transações recentes"
           rightElement={
             <Link
