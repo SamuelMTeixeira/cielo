@@ -21,7 +21,7 @@ export default function Select({ label, options, defaultValue }: SelectProps) {
       <SelectLabel className="label">
         <VisuallyHidden>{label}</VisuallyHidden>
       </SelectLabel>
-      <BaseSelect className="flex items-center gap-1 border bg-white text-gray-900 text-md rounded-lg focus:ring-blue-300 focus:border-blue-300 py-2.5 px-4" />
+      <BaseSelect className="flex items-center gap-1 border bg-white text-gray-900 text-md rounded-lg focus:ring-blue-300 focus:border-blue-300 py-2 px-4" />
       <SelectPopover
         gutter={4}
         sameWidth

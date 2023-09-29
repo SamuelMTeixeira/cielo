@@ -3,7 +3,7 @@
 import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
-import { Card } from '@/components/molecules'
+import { Card, Skeleton } from '@/components/molecules'
 import { Box, Flex, Select, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
@@ -135,6 +135,24 @@ export default function Home() {
         status: transaction.status,
       })) ?? []
 
+  const values = [
+    {
+      name: 'Saldo líquido aprovado (R$)',
+      data: approvedBalanceHistory,
+      color: '#017ceb',
+    },
+    {
+      name: 'Saldo líquido pendente (R$)',
+      data: pendingBalanceHistory,
+      color: '#eab308',
+    },
+    {
+      name: 'Saldo líquido negado (R$)',
+      data: deniedBalanceHistory,
+      color: '#ef4444',
+    },
+  ]
+
   return (
     <PageTemplate
       title="Página inicial"
@@ -151,24 +169,11 @@ export default function Home() {
           title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
         >
           <LineChart
-            values={[
-              {
-                name: 'Saldo líquido aprovado (R$)',
-                data: approvedBalanceHistory,
-                color: '#017ceb',
-              },
-              {
-                name: 'Saldo líquido pendente (R$)',
-                data: pendingBalanceHistory,
-                color: '#eab308',
-              },
-              {
-                name: 'Saldo líquido negado (R$)',
-                data: deniedBalanceHistory,
-                color: '#ef4444',
-              },
-            ]}
+            values={values}
             categories={categories}
+            width={500}
+            height={250}
+            loadingComponent={<Skeleton.Chart />}
           />
         </Card>
 
