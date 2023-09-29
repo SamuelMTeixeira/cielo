@@ -5,7 +5,7 @@ import { VariantProps } from 'tailwind-variants'
 import { Heading, HeadingLevel } from '@ariakit/react'
 
 export type TitleProps = VariantProps<typeof title> & {
-  children: string | string[]
+  children: string
   level: 1 | 2 | 3 | 4 | 5 | 6
   className?: string
 }

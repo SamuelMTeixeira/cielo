@@ -13,7 +13,7 @@ export const navigationItems: NavItem[] = [
     url: '/historico',
     name: 'Histórico de transações',
     Icon: ArrowLeftRight,
-  }
+  },
 ]
 
 export default navigationItems
