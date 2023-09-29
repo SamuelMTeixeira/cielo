@@ -1,25 +1,22 @@
 'use client'
 
-import { Box, Title } from '@/components/atoms'
-import Image from '@/components/atoms/Image'
-import logo from '@/assets/img/logo.svg'
+import { Box } from '@/components/atoms'
 import { NavItem, Nav } from '@/components/molecules/Nav'
 import { usePathname } from 'next/navigation'
+import { Brand } from '@/components/molecules'
 
 export interface AsideProps {
   navigationItems: NavItem[]
+  className?: string
 }
 
-export default function Aside({ navigationItems }: AsideProps) {
+export default function Aside({ navigationItems, className }: AsideProps) {
   const pathname = usePathname()
 
   return (
-    <Box as={'aside'}>
-      <Box as={'div'} className="mb-10 mx-4">
-        <Image src={logo} height={200} width={110} alt="Logo da Cielo" />
-        <Title level={3} className="text-[#04acec] text-end w-32" size="xl">
-          Metrics
-        </Title>
+    <Box as={'aside'} className={className}>
+      <Box as={'div'} className="mb-5 mx-4">
+        <Brand />
       </Box>
 
       <Nav className="flex flex-col gap-4">

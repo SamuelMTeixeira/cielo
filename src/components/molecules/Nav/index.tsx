@@ -19,15 +19,15 @@ export function NavItem({ name, Icon, url, isActive }: NavItem) {
     <li>
       <Link
         href={url}
-        size="md"
+        size="lg"
         weight="normal"
-        className={`flex items-center gap-2 ${
+        className={`md:text-base flex items-center gap-2 ${
           isActive
             ? 'text-blue-500 fill-blue-500 font-bold'
             : 'text-gray-500 fill-gray-600 font-normal'
         }`}
       >
-        <Icon size={20} />
+        <Icon className="w-8 md:w-5" />
         {name}
       </Link>
     </li>

@@ -12,12 +12,12 @@ export default function MainTemplate({
   navigationItems,
 }: MainTemplate) {
   return (
-    <Flex as={'div'} gap={5} className="p-5">
-      <Aside navigationItems={navigationItems} />
+    <Flex as={'div'} direction='column' gap={5} className="p-5 md:flex-row">
+      <Aside
+        className="hidden md:block md:w-4/12"
+        navigationItems={navigationItems} />
 
-      <Flex as={'div'} direction="column" className="flex-1">
-        {children}
-      </Flex>
+      {children}
     </Flex>
   )
 }

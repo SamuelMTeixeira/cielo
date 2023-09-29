@@ -1,8 +1,8 @@
 'use client'
 
-import Component, { Props } from 'react-apexcharts'
+import { Props } from 'react-apexcharts'
 import dynamic from 'next/dynamic'
-import { ComponentProps, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 export type ChartProps = {
   name: string
@@ -10,7 +10,7 @@ export type ChartProps = {
   color?: string
 }
 
-type LineChart = ComponentProps<typeof Component> & {
+type LineChart = {
   categories: (string | number)[]
   values: ChartProps[]
   loadingComponent?: ReactNode
@@ -20,8 +20,6 @@ export default function LineChart({
   categories,
   values,
   loadingComponent,
-  width,
-  height,
 }: LineChart) {
   const options: Props = {
     legend: {
@@ -106,8 +104,8 @@ export default function LineChart({
     <Chart
       options={options}
       series={values}
-      width={width}
-      height={height}
+      width={'100%'}
+      height={'100%'}
       type="line"
     />
   )

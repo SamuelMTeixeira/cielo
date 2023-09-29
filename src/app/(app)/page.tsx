@@ -3,7 +3,7 @@
 import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
-import { Card, Skeleton } from '@/components/molecules'
+import { Card, Section, Skeleton } from '@/components/molecules'
 import { Box, Flex, Select, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
@@ -22,21 +22,18 @@ const columns: ColumnsProps[] = [
     field: 'date',
     headerName: 'Data',
     headerClassName: 'table--header',
-    width: 100,
   },
   {
     field: 'paymentType',
     headerName: 'Tipo de pagamento',
     headerClassName: 'table--header',
     flex: 1,
-    minWidth: 120,
   },
   {
     field: 'cardBrand',
     headerName: 'Bandeira',
     headerClassName: 'table--header',
     flex: 1,
-    minWidth: 120,
     description:
       'Marca ou empresa responsável por um determinado cartão de crédito',
   },
@@ -45,23 +42,21 @@ const columns: ColumnsProps[] = [
     headerName: 'Valor líquido',
     headerClassName: 'table--header',
     flex: 1,
-    minWidth: 120,
   },
   {
     field: 'channel',
     headerName: 'Canal',
     headerClassName: 'table--header',
     flex: 1,
-    minWidth: 120,
     description:
       'É a forma pela qual uma transação foi realizada ou processada',
+      resizable: true
   },
   {
     field: 'status',
     headerName: 'Status',
     headerClassName: 'table--header',
     flex: 1,
-    minWidth: 120,
     renderCell: (params) => {
       const status = String(params.formattedValue).toLowerCase()
       let colorSchema = ''
@@ -156,32 +151,31 @@ export default function Home() {
   return (
     <PageTemplate
       title="Página inicial"
+      className='flex-1'
       rightElement={
         <Select
           options={['27/09/2023 a 27/10/2023']}
           defaultValue={'27/09/2023 a 27/10/2023'}
           label="Paginação"
         />
-      }
-    >
-      <Flex as={'section'} className="mt-10" gap={5} justify="between">
+      }>
+
+      <Section id='graficos' className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Card
           title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
         >
-          <LineChart
-            values={values}
-            categories={categories}
-            width={500}
-            height={250}
-            loadingComponent={<Skeleton.Chart />}
-          />
+          <Box as={'div'} className="h-72">
+            <LineChart
+              values={values}
+              categories={categories}
+              loadingComponent={<Skeleton.Chart />}
+            />
+          </Box>
         </Card>
 
-        <Card
-          className="flex flex-1 flex-col justify-between"
-          title="Resumo geral"
-        >
-          <Flex as={'div'} justify="evenly" items="center">
+
+        <Card title="Resumo geral">
+          <Flex as={'div'} direction='column' gap={4}>
             <Box as={'div'}>
               <Text className="text-center">Saldo</Text>
               <Title
@@ -201,29 +195,32 @@ export default function Home() {
             </Box>
           </Flex>
         </Card>
-      </Flex>
+      </Section>
 
-      <Card
-        className="mt-5"
-        title="Transações recentes"
-        rightElement={
-          <Link
-            className="bg-gray-100 py-2 px-4"
-            size="md"
-            weight="medium"
-            href={'/historico'}
-          >
-            Ver mais
-          </Link>
-        }
-      >
-        <Table
-          pageSizeOptions={[8]}
-          pageSize={8}
-          columns={columns}
-          rows={rows}
-        />
-      </Card>
+
+      <Section id="tabela">
+        <Card
+          className="mt-5 max-w-full"
+          title="Transações recentes"
+          rightElement={
+            <Link
+              className="bg-gray-100 py-2 px-4"
+              size="md"
+              weight="medium"
+              href={'/historico'}
+            >
+              Ver mais
+            </Link>
+          }
+        >
+          <Table
+            pageSizeOptions={[8]}
+            pageSize={8}
+            columns={columns}
+            rows={rows}
+          />
+        </Card>
+      </Section>
     </PageTemplate>
   )
 }

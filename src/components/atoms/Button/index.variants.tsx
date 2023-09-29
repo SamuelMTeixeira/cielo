@@ -1,7 +1,7 @@
 import { tv } from 'tailwind-variants'
 
 export const buttonVariants = tv({
-  base: 'flex gap-2 items-center px-4 py-2 rounded-lg text-white focus:outline-none focus:ring',
+  base: 'flex gap-2 items-center px-4 py-2 text-white focus:outline-none focus:ring',
   variants: {
     schema: {
       primary:
@@ -16,10 +16,17 @@ export const buttonVariants = tv({
       md: 'text-base',
       lg: 'px-4 py-3 text-lg',
     },
+    rounded: {
+      sm: 'rounded-sm',
+      md: 'rounded-md',
+      lg: 'rounded-lg',
+      full: 'rounded-full',
+    },
   },
   defaultVariants: {
     size: 'md',
     schema: 'primary',
+    rounded: 'lg',
   },
 })
 
