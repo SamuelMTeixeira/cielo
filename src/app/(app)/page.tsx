@@ -4,13 +4,14 @@ import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
 import { Card, Section, Skeleton } from '@/components/molecules'
-import { Box, Flex, Select, Table, Text, Title } from '@/components/atoms'
+import { Box, Flex, Lottie, Select, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
 import { useState, useEffect } from 'react'
 import sumNetAmount from '@/utils/sumNetAmount'
 import parse from '@/utils/parse'
 import generateArrayNumber from '@/utils/generateArrayNumber'
+import searchAnimation from '@/assets/lottie/searchAnimation.json'
 
 const columns: ColumnsProps[] = [
   {
@@ -113,7 +114,14 @@ export default function Home() {
   }, [transactions])
 
   if (!transactions && !summary && !pagination) {
-    return <p>Carregando...</p>
+    return (
+      <Flex items="center" justify="center" className="h-screen w-full">
+        <Box items="center" justify="center" className="flex-1">
+          <Lottie animationData={searchAnimation} width={'80%'} />
+          <Text className="text-gray-500 animate-pulse text-center" size='xl'>Os gráficos estão sendo gerados, por favor aguarde...</Text>
+        </Box>
+      </Flex>
+    )
   }
 
   const totalNetAmount: string = parse.toMoney(summary?.totalNetAmount ?? 0)
