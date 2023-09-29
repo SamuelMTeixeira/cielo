@@ -4,7 +4,7 @@ import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
 import { Card } from '@/components/molecules'
-import { Box, Flex, Table, Text, Title } from '@/components/atoms'
+import { Box, Flex, Select, Table, Text, Title } from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
 import { useState, useEffect } from 'react'
@@ -37,6 +37,8 @@ const columns: ColumnsProps[] = [
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
+    description:
+      'Marca ou empresa responsável por um determinado cartão de crédito',
   },
   {
     field: 'netAmount',
@@ -51,6 +53,8 @@ const columns: ColumnsProps[] = [
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
+    description:
+      'É a forma pela qual uma transação foi realizada ou processada',
   },
   {
     field: 'status',
@@ -132,7 +136,16 @@ export default function Home() {
       })) ?? []
 
   return (
-    <PageTemplate title="Página inicial" rightElement={<p>elemento direito</p>}>
+    <PageTemplate
+      title="Página inicial"
+      rightElement={
+        <Select
+          options={['27/09/2023 a 27/10/2023']}
+          defaultValue={'27/09/2023 a 27/10/2023'}
+          label="Paginação"
+        />
+      }
+    >
       <Flex as={'section'} className="mt-10" gap={5} justify="between">
         <Card
           title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
@@ -162,13 +175,6 @@ export default function Home() {
         <Card
           className="flex flex-1 flex-col justify-between"
           title="Resumo geral"
-          footer={
-            <>
-              <Text className="text-gray-600">
-                Corresponde ao periodo do dia 27/09/2023 ao 27/10/2023
-              </Text>
-            </>
-          }
         >
           <Flex as={'div'} justify="evenly" items="center">
             <Box as={'div'}>

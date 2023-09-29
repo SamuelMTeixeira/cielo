@@ -4,7 +4,7 @@ import useTransactions from '@/hooks/useTransactions'
 import Table, { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import { Card } from '@/components/molecules'
 import PageTemplate from '@/components/templates/PageTemplate'
-import { Box } from '@/components/atoms'
+import { Box, Select } from '@/components/atoms'
 import parse from '@/utils/parse'
 
 const columns: ColumnsProps[] = [
@@ -32,6 +32,8 @@ const columns: ColumnsProps[] = [
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
+    description:
+      'Marca ou empresa responsável por um determinado cartão de crédito',
   },
   {
     field: 'netAmount',
@@ -46,6 +48,8 @@ const columns: ColumnsProps[] = [
     headerClassName: 'table--header',
     flex: 1,
     minWidth: 120,
+    description:
+      'É a forma pela qual uma transação foi realizada ou processada',
   },
   {
     field: 'status',
@@ -103,7 +107,16 @@ export default function Home() {
     })) ?? []
 
   return (
-    <PageTemplate title="Histórico de transações">
+    <PageTemplate
+      title="Histórico de transações"
+      rightElement={
+        <Select
+          options={['27/09/2023 a 27/10/2023']}
+          defaultValue={'27/09/2023 a 27/10/2023'}
+          label="Paginação"
+        />
+      }
+    >
       <Card className="mt-5" title="Todos os registros de transações">
         <Table
           pageSizeOptions={[25, 50, 100]}
