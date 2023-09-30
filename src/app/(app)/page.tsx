@@ -198,7 +198,7 @@ export default function Home() {
         className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-5"
       >
         <Card
-          title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
+          title={`Saldo acumulativo das ${pagination?.pageSize} últimas transações`}
         >
           <Box as={'div'} className="h-72">
             <LineChart
@@ -219,7 +219,7 @@ export default function Home() {
             gap={5}
           >
             <Box as={'div'}>
-              <Text className="text-center">Saldo</Text>
+              <Text className="text-center">Saldo da conta</Text>
               <Title
                 className="text-center text-green-600"
                 size="3xl"
