@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<p align="center">
+<img src="src/assets/img/logo.svg" width="200" alt="Plataforma Integral de Registros Cirúrgicos">
+</p>
+<h1 align="center">Cielo Metrics</h1>
 
-First, run the development server:
+## Descrição do Projeto
 
+O Cielo Metrics é um projeto resultante do Bootcamp Cielo da Ada Tech, construído com as tecnologias TypeScript, React e Next.js. Este projeto tem como objetivo principal criar uma aplicação que ofereça análises de alto valor para os clientes finais.
+
+### Ambiente de trabalho recomendado
+Para trabalhar neste projeto, recomendo que você tenha as seguintes versões instaladas em sua máquina:
+
+- Node: versão 20 ou superior
+- Pnpm: versão 8 ou superior
+
+Caso você não tenha o nnpm instalado, basta executar o seguinte comando no terminal (ou excluir o arquivo pnpm-lock.yaml e usar o npm ou yarn):
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    npm install -g pnpm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instruções de Instalação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Siga as etapas abaixo para configurar e executar o projeto em sua máquina local.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone este repositório:
 
-## Learn More
+```bash
+    git clone https://github.com/SamuelMTeixeira/cielo-metrics.git cielo-metrics
+    cd cielo-metrics
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. Instale as dependências:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Escolha um dos seguintes comandos de acordo com o gerenciador de pacotes que você prefere:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+    pnpm install
+    # or
+    npm install
+    # or
+    yarn install
+```
 
-## Deploy on Vercel
+3. Após concluir as etapas de instalação, você pode iniciar o servidor de desenvolvimento usando o seguinte comando:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+    pnpm dev
+    # or
+    npm run dev
+    # or
+    yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Isso iniciará o servidor de desenvolvimento e você poderá acessar o projeto em http://localhost:3000 em seu navegador.
+
+
+## Referência da API
+
+### Pegar todas as transações
+
+#### Requisição
+
+```http
+  GET /api/transactions
+```
+
+#### Resposta
+
+```json
+{
+    "summary":{
+        "totalQuantity":1546,
+        "totalAmount":313388,
+        "totalNetAmount":301847.02,
+        "totalAverageAmount":202.71,
+        "initialDate":"2021-05-26",
+        "finalDate":"2021-05-26"
+    },
+    "pagination":{
+        "pageNumber":60,
+        "pageSize":25,
+        "totalElements":1546,
+        "numPages":62,
+        "lastPage":false,
+        "firstPage":false
+    },
+    "items":[
+        {
+            "id":"114606514478703", 
+            "merchantId":"2000463023",
+            "paymentNode":485173,
+            "cnpjRoot":485116,
+            "date":"2021-05-26T12:12:55",
+            "paymentType":"Crédito à vista",
+            "cardBrand":"Mastercard",
+            "authorizationCode":"378216",
+            "truncatedCardNumber":"1014",
+            "grossAmount":80.0,
+            "netAmount":76.88,
+            "terminal":"00032668",
+            "administrationFee":3.9,
+            "channelCode":15,
+            "channel":"Super Link / Digitada",
+            "withdrawAmount":0.0,
+            "minimumMDRAmmount":-3.12,
+            "mdrTaxAmount":0.0,
+            "mdrFeeAmount":-3.12,
+            "status":"Aprovada"
+        }
+    ]
+}
+```
