@@ -124,12 +124,19 @@ export default function Home() {
   if (!transactions && !summary && !pagination) {
     return (
       <Flex items="center" justify="center" className="h-screen w-full">
-        <Box items="center" justify="center" className="flex-1">
+        <Flex
+          as="div"
+          id="loading-spinner"
+          direction="column"
+          items="center"
+          justify="center"
+          className="flex-1"
+        >
           <Lottie animationData={searchAnimation} width={'80%'} />
           <Text className="text-gray-500 animate-pulse text-center" size="xl">
             Os gráficos estão sendo gerados, por favor aguarde...
           </Text>
-        </Box>
+        </Flex>
       </Flex>
     )
   }
@@ -143,16 +150,18 @@ export default function Home() {
 
   const rows: RowsProps =
     transactions
-      ?.filter((transaction, index) => index < 8)
-      .map((transaction) => ({
-        id: transaction.id,
-        date: parse.toDateBR(transaction.date),
-        paymentType: transaction.paymentType,
-        cardBrand: transaction.cardBrand,
-        netAmount: parse.toMoney(transaction.netAmount),
-        channel: transaction.channel,
-        status: transaction.status,
-      })) ?? []
+      ?.filter((_, index) => index < 8)
+      .map(
+        ({ id, date, paymentType, cardBrand, netAmount, channel, status }) => ({
+          id,
+          date: parse.toDateBR(date),
+          paymentType,
+          cardBrand,
+          netAmount: parse.toMoney(netAmount),
+          channel,
+          status,
+        }),
+      ) ?? []
 
   const values = [
     {
@@ -200,7 +209,7 @@ export default function Home() {
           </Box>
         </Card>
 
-        <Card title="Resumo geral">
+        <Card id="resumo" title="Resumo geral">
           <Flex
             as={'div'}
             direction="column"
@@ -232,6 +241,7 @@ export default function Home() {
 
       <Section id="tabela" className="flex justify-center items-center ">
         <Card
+          id="tabela"
           className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
           title="Transações recentes"
           rightElement={
