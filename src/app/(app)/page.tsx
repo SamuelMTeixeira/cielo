@@ -4,7 +4,15 @@ import useTransactions from '@/hooks/useTransactions'
 import PageTemplate from '@/components/templates/PageTemplate'
 import LineChart from '@/components/atoms/LineChart'
 import { Card, Section, Skeleton } from '@/components/molecules'
-import { Box, Flex, Lottie, Select, Table, Text, Title } from '@/components/atoms'
+import {
+  Box,
+  Flex,
+  Lottie,
+  Select,
+  Table,
+  Text,
+  Title,
+} from '@/components/atoms'
 import { ColumnsProps, RowsProps } from '@/components/atoms/Table'
 import Link from '@/components/atoms/Link'
 import { useState, useEffect } from 'react'
@@ -118,7 +126,9 @@ export default function Home() {
       <Flex items="center" justify="center" className="h-screen w-full">
         <Box items="center" justify="center" className="flex-1">
           <Lottie animationData={searchAnimation} width={'80%'} />
-          <Text className="text-gray-500 animate-pulse text-center" size='xl'>Os gráficos estão sendo gerados, por favor aguarde...</Text>
+          <Text className="text-gray-500 animate-pulse text-center" size="xl">
+            Os gráficos estão sendo gerados, por favor aguarde...
+          </Text>
         </Box>
       </Flex>
     )
@@ -165,16 +175,19 @@ export default function Home() {
   return (
     <PageTemplate
       title="Página inicial"
-      className='flex-1'
+      className="flex-1"
       rightElement={
         <Select
           options={['27/09/2023 a 27/10/2023']}
           defaultValue={'27/09/2023 a 27/10/2023'}
           label="Paginação"
         />
-      }>
-
-      <Section id='graficos' className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-5">
+      }
+    >
+      <Section
+        id="graficos"
+        className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-5"
+      >
         <Card
           title={`Evolução do saldo nas ${pagination?.pageSize} últimas transações`}
         >
@@ -187,9 +200,15 @@ export default function Home() {
           </Box>
         </Card>
 
-
         <Card title="Resumo geral">
-          <Flex as={'div'} direction='column' justify='center' items='center' className='h-full' gap={5}>
+          <Flex
+            as={'div'}
+            direction="column"
+            justify="center"
+            items="center"
+            className="h-full"
+            gap={5}
+          >
             <Box as={'div'}>
               <Text className="text-center">Saldo</Text>
               <Title
@@ -211,8 +230,7 @@ export default function Home() {
         </Card>
       </Section>
 
-
-      <Section id="tabela" className='flex justify-center items-center '>
+      <Section id="tabela" className="flex justify-center items-center ">
         <Card
           className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
           title="Transações recentes"

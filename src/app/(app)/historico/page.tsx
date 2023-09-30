@@ -117,8 +117,7 @@ export default function Home() {
         />
       }
     >
-
-      <Section id="tabela" className='flex justify-center items-center'>
+      <Section id="tabela" className="flex justify-center items-center">
         <Card
           className="mt-5 w-full min-[768px]:max-w-xl min-[890px]:max-w-2xl lg:max-w-full"
           title="Transações recentes"
