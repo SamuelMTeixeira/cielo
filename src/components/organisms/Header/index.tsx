@@ -49,8 +49,9 @@ const MobileHeader = ({ navigationItems }: MobileHeaderProps) => {
   return (
     <>
       <Drawer isOpen={isOpen} onClose={toggleDrawer}>
-
-        <Title level={2} className='px-4 mb-1'>Menu de navegação</Title>
+        <Title level={2} className="px-4 mb-1">
+          Menu de navegação
+        </Title>
         <Nav className="flex flex-col gap-4">
           {navigationItems.map((item, index) => (
             <NavItem

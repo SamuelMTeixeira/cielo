@@ -16,7 +16,7 @@ export default function PageTemplate({
   ...props
 }: PageTemplate) {
   return (
-    <Box as={'div'} className='flex-1'>
+    <Box as={'div'} className="flex-1">
       <Header
         title={title}
         rightElement={rightElement}
