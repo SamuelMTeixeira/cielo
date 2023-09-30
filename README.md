@@ -8,6 +8,17 @@
 
 O Cielo Metrics é um projeto resultante do Bootcamp Cielo da Ada Tech, construído com as tecnologias TypeScript, React e Next.js. Este projeto tem como objetivo principal criar uma aplicação que ofereça análises de alto valor para os clientes finais.
 
+### Ambiente de trabalho recomendado
+Para trabalhar neste projeto, recomendo que você tenha as seguintes versões instaladas em sua máquina:
+
+- Node: versão 20 ou superior
+- Pnpm: versão 8 ou superior
+
+Caso você não tenha o nnpm instalado, basta executar o seguinte comando no terminal (ou excluir o arquivo pnpm-lock.yaml e usar o npm ou yarn):
+```bash
+    npm install -g pnpm
+```
+
 ## Instruções de Instalação
 
 Siga as etapas abaixo para configurar e executar o projeto em sua máquina local.
@@ -15,7 +26,7 @@ Siga as etapas abaixo para configurar e executar o projeto em sua máquina local
 1. Clone este repositório:
 
 ```bash
-    git clone https://github.com/SamuelMTeixeira/cielo.git cielo-metrics
+    git clone https://github.com/SamuelMTeixeira/cielo-metrics.git cielo-metrics
     cd cielo-metrics
 ```
 
